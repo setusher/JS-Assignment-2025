@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class = "container">
+        <div class = "header">
+            <h1>ChatBot</h1>
+            <select id = "model-select">
+                <option value = "mistralai/mistral-small-3.2-24b-instruct:free">Mistral</option>
+                <option value = "moonshotai/kimi-dev-72b:free">Kimi</option>
+                <option value = "deepseek/deepseek-r1-0528-qwen3-8b:free">Qwen</option>
+                <option value = "deepseek/deepseek-r1-0528:free">Deepseek</option>
+                <option value = "sarvamai/sarvam-m:free">Sarvam</option>
+                <option value = "google/gemma-3n-e4b-it:free">Gemma</option>
+                <option value = "tngtech/deepseek-r1t-chimera:free">Chimera</option>
+                <option value = "microsoft/mai-ds-r1:free">Mai</option>
+            </select>
+            <input type="password" id="api-key" placeholder="Enter OpenRouter API Key" />
+        </div>
+
+        <div id="chat-box" class="chat-box"></div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type a message..." required />
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
