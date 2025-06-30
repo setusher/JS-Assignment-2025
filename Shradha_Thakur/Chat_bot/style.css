@@ -3,7 +3,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom, #0466c8, #001233);
+    background: linear-gradient(to bottom, #001219,#005f73, #94d2bd);
     min-height: 100vh;
     color: #333;
 }
@@ -77,7 +77,7 @@ body {
 
 
 .chat-box {
-    background: linear-gradient(to bottom, #001845, #979dac);
+    background: #94d2bd;
     border: 2px solid #001233;
     border-radius: 10px;
     height: 500px;
@@ -110,7 +110,7 @@ body {
     text-align: right;
     margin: 10px 0;
     padding: 12px 16px;
-    background: #64b5f6;
+    background: #0a9396;
     color: white;
     border-radius: 15px 15px 5px 15px;
     max-width: 70%;
@@ -159,7 +159,7 @@ body {
 
 button {
     padding: 12px 24px;
-    background: #0466c8;
+    background: #005f73;
     color: white;
     border: none;
     border-radius: 25px;
@@ -170,7 +170,7 @@ button {
 }
 
 button:hover {
-    background: #002855;
+    background: #001219;
 }
 
 button:active {
