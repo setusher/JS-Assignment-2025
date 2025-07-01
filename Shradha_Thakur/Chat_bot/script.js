@@ -3,7 +3,6 @@ const userInput = document.getElementById('user-input');
 const chatBox = document.getElementById('chat-box');
 const apiKey = document.getElementById('api-key');
 const modelSelect = document.getElementById('model-select');
-
 let messages = [];
 
 function enterMessage(content, sender) {
@@ -73,4 +72,7 @@ form.addEventListener('submit', async (e) => {
   userInput.value = '';
 
   await streaming(model, key, messages);
+  
+
 });
+
