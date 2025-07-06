@@ -4,6 +4,11 @@ const chatBox = document.getElementById('chat-box');
 const apiKey = document.getElementById('api-key');
 const modelSelect = document.getElementById('model-select');
 let messages = [];
+const toggleHistoryBtn = document.getElementById('toggle-history');
+const sidebar = document.getElementById('sidebar');
+const historyList = document.getElementById('history-list');
+
+
 
 function enterMessage(content, sender) {
   const msg = document.createElement('div');
@@ -75,4 +80,28 @@ form.addEventListener('submit', async (e) => {
   
 
 });
+
+
+toggleHistoryBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  loadHistoryList();
+});
+
+
+function loadHistoryList() {
+  historyList.innerHTML = ''; 
+  const saved = JSON.parse(localStorage.getItem('chatHistory')) || [];
+
+
+  saved.forEach((msg, index) => {
+    if (msg.role === 'user') {
+      const li = document.createElement('li');
+      li.textContent = msg.content;
+      li.addEventListener('click', () => {
+        alert(`Message at index ${index}: ${msg.content}`);
+      });
+      historyList.appendChild(li);
+    }
+  });
+}
 

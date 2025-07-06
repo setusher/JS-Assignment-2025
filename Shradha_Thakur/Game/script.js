@@ -7,16 +7,10 @@ function gameLoop (){
     draw();
     requestAnimationFrame(gameLoop);
 }
-
-CanvasRenderingContext2D.prototype.fillCircle = function(x, y, r) {
-    this.beginPath();
-    this.arc(x, y, r, 0, 2 * Math.PI);
-    this.fill();
-  };
   
 const GRAVITY = 0.5;    
 const JUMP_STRENGTH = -15;
-let GAME_SPEED = 7;
+let GAME_SPEED = 10;
  
 
 
@@ -243,9 +237,9 @@ function draw() {
 
     player.draw();
 
-    ctx.fillStyle = 'black padding 20px';
+    ctx.fillStyle = 'black padding 20px bold';
     ctx.font = '40px Arial';
-    ctx.fillText("Score: " + score, 20, 40);
+    ctx.fillText("SCORE: " + score, 20, 40);
 
 }
 
