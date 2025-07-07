@@ -4,6 +4,8 @@ const chatBox = document.getElementById('chat-box');
 const apiKey = document.getElementById('api-key');
 const modelSelect = document.getElementById('model-select');
 let messages = [];
+let chatSessions = JSON.parse(localStorage.getItem('chatSessions')) || [];
+
 const toggleHistoryBtn = document.getElementById('toggle-history');
 const sidebar = document.getElementById('sidebar');
 const historyList = document.getElementById('history-list');
@@ -87,21 +89,37 @@ toggleHistoryBtn.addEventListener('click', () => {
   loadHistoryList();
 });
 
+window.addEventListener('beforeunload', () => {
+  if (messages.length > 0) {
+    chatSessions.push([...messages]); 
+    localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
+  }
+});
 
 function loadHistoryList() {
-  historyList.innerHTML = ''; 
-  const saved = JSON.parse(localStorage.getItem('chatHistory')) || [];
+  historyList.innerHTML = '';
+  const sessions = JSON.parse(localStorage.getItem('chatSessions')) || [];
 
-
-  saved.forEach((msg, index) => {
-    if (msg.role === 'user') {
-      const li = document.createElement('li');
-      li.textContent = msg.content;
-      li.addEventListener('click', () => {
-        alert(`Message at index ${index}: ${msg.content}`);
-      });
-      historyList.appendChild(li);
-    }
+  sessions.forEach((session, idx) => {
+    const li = document.createElement('li');
+    li.textContent = `Chat #${idx + 1} `;
+    li.addEventListener('click', () => {
+      chatBox.innerHTML = '';
+      session.forEach(msg => enterMessage(msg.content, msg.role));
+    });
+    historyList.appendChild(li);
   });
 }
+
+  // saved.forEach((msg, index) => {
+  //   if (msg.role === 'user') {
+  //     const li = document.createElement('li');
+  //     li.textContent = msg.content;
+  //     li.addEventListener('click', () => {
+  //       alert(`Message at index ${index}: ${msg.content}`);
+  //     });
+  //     historyList.appendChild(li);
+  //   }
+  // });
+
 
