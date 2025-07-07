@@ -236,10 +236,15 @@ function draw() {
     for (let c of collectables) c.draw();
 
     player.draw();
-
+    
     ctx.fillStyle = 'black padding 20px bold';
     ctx.font = '40px Arial';
     ctx.fillText("SCORE: " + score, 20, 40);
+
+    // ctx.fillStyle = 'black padding 20px bold';
+    // ctx.font = '40px Arial';
+    // ctx.fillText("SAVE THY BALL(s)");
+
 
 }
 
@@ -252,13 +257,28 @@ function isColliding(r1,r2){
     );
 }
 
-function gameover(){
+function gameover() {
     alert("Game Over! Your Score is: " + score);
+  
+    
+    score = 0;
+    // isGameOver = false;
+  
+    
+    player.y = 150;
+    player.velocity = 0;
+  
+   
+    obstacles = [];
+    collectables = [];
+    platforms = [];
+  
+    
+    initGround();
+  }
+  
 
-    location.document.reload();
-}
-
-
+alert("Welcome to Save thy Ball!\n Press Space to Jump!\n Collect the coins to increase the score!\n All the best!!");
 initGround();
 gameLoop();
 
