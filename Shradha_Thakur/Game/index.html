@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>game</title>
+    <title>Save thy ball(s)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+        <div id="ballSelection" style="
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;">
+        <h1>Select Your Ball</h1>
+        <div style="display: flex; gap: 30px;">
+            <img src="assets/ball1.png" width="100" height="100" onclick="selectBall('assets/ball1.png')" style="cursor:pointer;" />
+            <img src="assets/ball2.png" width="100" height="100" onclick="selectBall('assets/ball2.png')" style="cursor:pointer;" />
+            <img src="assets/ball3.png" width="100" height="100" onclick="selectBall('assets/ball3.png')" style="cursor:pointer;" />
+            <img src="assets/ball4.png" width="100" height="100" onclick="selectBall('assets/ball4.png')" style="cursor:pointer;" />
+
+        </div>
+    </div>
+
     
     <canvas id="gameCanvas" width="1500" height="700"></canvas>
     <script src="script.js"></script>   

@@ -280,7 +280,14 @@ function gameover() {
 
 alert("Welcome to Save thy Ball!\n Press Space to Jump!\n Collect the coins to increase the score!\n All the best!!");
 initGround();
-gameLoop();
+
+function selectBall(imagePath) {
+    playerImg.src = imagePath;
+    document.getElementById('ballSelection').style.display = 'none';
+    gameLoop(); 
+}
+
+
 
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
