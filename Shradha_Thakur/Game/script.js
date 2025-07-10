@@ -10,7 +10,13 @@ function gameLoop (){
   
 const GRAVITY = 0.5;    
 const JUMP_STRENGTH = -15;
-let GAME_SPEED = 10;
+let GAME_SPEED = 8;
+
+let speedIncreaseInterval = 5000; 
+let lastSpeedIncreaseTime = Date.now();
+let maxSpeed = 25;
+let speedStep = 0.5; 
+
  
 
 
@@ -138,6 +144,7 @@ function initGround(){
 
 function updateGround(){
 
+
     console.log("Platforms length:", platforms.length);
     if (platforms.length > 0) {
         console.log("First platform X:", platforms[0].x);
@@ -170,6 +177,16 @@ let score = 0;
 function update(){
     updateGround();
 
+    const now = Date.now();
+    if (now - lastSpeedIncreaseTime >= speedIncreaseInterval) {
+        if (GAME_SPEED < maxSpeed) {
+            GAME_SPEED += speedStep;
+            console.log("Speed increased to", GAME_SPEED.toFixed(2));
+        }
+        lastSpeedIncreaseTime = now;
+    }
+
+
     for(let i = 0; i < obstacles.length; i++){
        
         if(isColliding(player, obstacles[i])){
@@ -199,7 +216,7 @@ function update(){
         }   
     }
 
-    if(Math.random()<0.2 && collectables.length < 5){
+    if(Math.random()<0.6 && collectables.length < 5){
 
         const ringWidth = 100;
         const ringHeight = 100;
@@ -244,6 +261,10 @@ function draw() {
     // ctx.fillStyle = 'black padding 20px bold';
     // ctx.font = '40px Arial';
     // ctx.fillText("SAVE THY BALL(s)");
+
+    ctx.font = '30px Arial';
+    ctx.fillText("Speed: " + GAME_SPEED.toFixed(1), 20, 80);
+
 
 
 }
