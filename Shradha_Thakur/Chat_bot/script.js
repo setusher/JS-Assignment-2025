@@ -1,3 +1,14 @@
+function parseMarkdown(markdown) {
+  return markdown
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    .replace(/^## (.*$)/gim, '<h1>$1</h1>')
+    .replace(/^### (.*$)/gim, '<h1>$1</h1>')
+    .replace(/\*\*(.*?)\*\*/gim, '<b>$1</b>')
+    .replace(/\*(.*?)\*/gim, '<i>$1</i>')
+    .replace(/\n/g, '<br>');
+
+}
+
 const form = document.getElementById('chat-form');
 const userInput = document.getElementById('user-input');
 const chatBox = document.getElementById('chat-box');
@@ -9,14 +20,14 @@ let chatSessions = JSON.parse(localStorage.getItem('chatSessions')) || [];
 const toggleHistoryBtn = document.getElementById('toggle-history');
 const sidebar = document.getElementById('sidebar');
 const historyList = document.getElementById('history-list');
-
+ 
 
 
 function enterMessage(content, sender) {
   const msg = document.createElement('div');
   msg.className = sender === 'user' ? 'user-msg' : 'bot-msg';
-  msg.textContent = content;
   chatBox.appendChild(msg);
+  msg.innerHTML = parseMarkdown(content);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -55,7 +66,7 @@ async function streaming(model, apikey, messages) {
           const json = JSON.parse(line.slice(5));
           const token = json.choices[0]?.delta?.content || '';
           result += token;
-          botDiv.textContent = result;
+          botDiv.innerHTML = parseMarkdown(result);
           chatBox.scrollTop = chatBox.scrollHeight;
         } catch (e) {
           console.warn('Invalid chunk:', line);
@@ -111,15 +122,15 @@ function loadHistoryList() {
   });
 }
 
-  // saved.forEach((msg, index) => {
-  //   if (msg.role === 'user') {
-  //     const li = document.createElement('li');
-  //     li.textContent = msg.content;
-  //     li.addEventListener('click', () => {
-  //       alert(`Message at index ${index}: ${msg.content}`);
-  //     });
-  //     historyList.appendChild(li);
-  //   }
-  // });
+  saved.forEach((msg, index) => {
+    if (msg.role === 'user') {
+      const li = document.createElement('li');
+      li.textContent = msg.content;
+      li.addEventListener('click', () => {
+        alert(`Message at index ${index}: ${msg.content}`);
+      });
+      historyList.appendChild(li);
+    }
+  });
 
 
